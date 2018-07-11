@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Alta de Companiero de Trabajo</title>
+</h:head>
+<h:body>
+	<h:form id="workFormId">
+
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+		
+		<p:panelGrid columns="2">
+
+			<p:outputLabel value="Nombre:" for="nameIn" />
+			<p:inputText id="nameIn" value="#{workForm.name}" required="true" />
+		
+			<p:outputLabel value="Apellido Paterno:" for="firstNameIn" />
+			<p:inputText id="firstNameIn" value="#{workForm.firstName}" required="true" />
+		
+			<p:outputLabel value="Apellido Materno:" for="lastNameIn" />
+			<p:inputText id="lastNameIn" value="#{workForm.lastName}" required="true" />
+		
+			<p:outputLabel value="Telefono:" for="phoneIn" />
+			<p:inputText id="phoneIn" value="#{workForm.phone}" required="true" />
+		
+			<p:outputLabel value="Domicilio:" for="addressIn" />
+			<p:inputText id="addressIn" value="#{workForm.address}" />
+			
+			<p:outputLabel value="Empresa: " for="companyIn" />
+			<p:inputText id="companyIn" value="#{workForm.company}" />
+			
+			<p:outputLabel value="Area: " for="areaIn" />
+			<p:inputText id="areaIn" value="#{workForm.area}" />
+			
+			<p:outputLabel value="Rubro: " for="rubIn" />
+			<p:inputText id="rubIn" value="#{workForm.rub}" required="true"/>
+		
+		</p:panelGrid>
+		
+		<p:commandButton value="Guardar" action="#{workForm.save}" update="workFormId,messages" />
+		<p:commandButton value="Regresar" action="#{workForm.redirectToHome}" immediate="true" />
+
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Web Consumer</title>
+</h:head>
+<h:body bgcolor="white">
+	<h2>Libreta de direcciones</h2>
+	<h:form id="indexForm">
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+		
+		<p:panelGrid columns="2">
+
+			<p:outputLabel value="Nombre: " />
+			<p:inputText value="#{helloBean.name}" />
+
+			<p:outputLabel value="Tipo: " />
+			<p:selectOneMenu value="#{helloBean.userType}">
+				<f:selectItems value="#{helloBean.userTypeList}" var="vUserType" itemLabel="#{vUserType.description}"
+					itemValue="#{vUserType.id}" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+		<p:commandButton value="Buscar" action="#{helloBean.find}" update="familiarTableId,workPTable,messages"/>
+		<p:commandButton value="Nuevo" action="#{helloBean.newRecord}" />
+
+		<p:dataTable id="familiarTableId" var="familiar" value="#{helloBean.familiarList}" >
+			<p:column headerText="Nombre">
+				<h:outputText value="#{familiar.name} #{familiar.firstName}" />
+			</p:column>
+
+			<p:column headerText="Telefono:">
+				<h:outputText value="#{familiar.phone}" />
+			</p:column>
+
+			<p:column headerText="Acciones">
+				<p:commandButton value=" " icon="ui-icon-trash" action="#{helloBean.deleteFamiliar(familiar.id)}" update="indexForm"/>
+				<p:commandButton value=" " icon="ui-icon-pencil" action="#{helloBean.updateFamiliar(familiar)}" />
+			</p:column>
+		</p:dataTable>
+		
+		<p:dataTable id="workPTable" var="familiar" value="#{helloBean.workList}" >
+			<p:column headerText="Nombre">
+				<h:outputText value="#{familiar.name} #{familiar.firstName}" />
+			</p:column>
+
+			<p:column headerText="Telefono:">
+				<h:outputText value="#{familiar.phone}" />
+			</p:column>
+
+			<p:column headerText="Acciones">
+				<p:commandButton value=" " icon="ui-icon-trash" action="#{helloBean.deleteWorkPartner(familiar.id)}" update="indexForm" />
+				<p:commandButton value=" " icon="ui-icon-pencil" action="#{helloBean.updateWorkPartner(familiar)}" />
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+</html>
